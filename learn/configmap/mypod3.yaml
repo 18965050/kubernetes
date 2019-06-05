@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod3
+spec:
+  containers:
+  - name: mypod3
+    image: busybox
+    args:
+      - /bin/sh
+      - -c
+      - sleep 10; touch /tmp/healthy; sleep 30000
+    env:
+      - name: CONFIG_1        # 环境变量名字
+        valueFrom:
+          configMapKeyRef:
+            name: myconfigmap
+            key: config1            # key
+      - name: CONFIG_2
+        valueFrom:
+          configMapKeyRef:
+            name: myconfigmap
+            key: config2

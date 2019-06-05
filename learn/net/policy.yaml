@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: access-httpd
+spec:
+  podSelector:
+    matchLabels:
+      run: httpd                          #  将访问规则应用于label为run: httpd的 pod，即httpd应用的的三个副本
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              access: "true"                  #  ingress中定义只有label为access：“true”的pod才能访问应用。（busybox已经不能访问了，需要加上access:"true"的Lable后才能访问）
+        - ipBlock:
+            cidr: 192.168.98.0/24
+      ports:
+        - protocol: TCP
+          port: 80                           #  只能访问80端口
