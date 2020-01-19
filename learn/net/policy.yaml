@@ -15,4 +15,4 @@ spec:
             cidr: 192.168.98.0/24
       ports:
         - protocol: TCP
-          port: 80                           #  只能访问80端口
+          port: 8080                           #  只能访问8080端口

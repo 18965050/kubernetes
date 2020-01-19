@@ -195,9 +195,11 @@ items:
         weave-scope-component: app
       namespace: weave
     spec:
+      type: NodePort
       ports:
         - name: app
           port: 80
+          nodePort: 30003
           protocol: TCP
           targetPort: 4040
       selector:
